@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | wozsh&#39;s blog</title>
+  <title>自动装箱、拆箱 | wozsh&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="wozsh&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="自动装箱、拆箱是java中最常用的语法糖之一，虚拟机运行时并不支持自动装箱、拆箱，装箱和拆箱的操作是在编译期间进行的。  《深入理解java虚拟机》中的例子： 12345678910111213141516171819public class AutoBoxingTest &amp;#123;    public static void main(String[] args) &amp;#123;">
+<meta name="keywords" content="java,jdk">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自动装箱、拆箱">
+<meta property="og:url" content="http://yoursite.com/2018/03/09/自动装箱、拆箱/index.html">
 <meta property="og:site_name" content="wozsh&#39;s blog">
+<meta property="og:description" content="自动装箱、拆箱是java中最常用的语法糖之一，虚拟机运行时并不支持自动装箱、拆箱，装箱和拆箱的操作是在编译期间进行的。  《深入理解java虚拟机》中的例子： 12345678910111213141516171819public class AutoBoxingTest &amp;#123;    public static void main(String[] args) &amp;#123;">
+<meta property="og:updated_time" content="2018-03-08T17:10:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="wozsh&#39;s blog">
+<meta name="twitter:title" content="自动装箱、拆箱">
+<meta name="twitter:description" content="自动装箱、拆箱是java中最常用的语法糖之一，虚拟机运行时并不支持自动装箱、拆箱，装箱和拆箱的操作是在编译期间进行的。  《深入理解java虚拟机》中的例子： 12345678910111213141516171819public class AutoBoxingTest &amp;#123;    public static void main(String[] args) &amp;#123;">
   
     <link rel="alternative" href="/atom.xml" title="wozsh&#39;s blog" type="application/atom+xml">
   
@@ -151,36 +156,66 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-自动装箱、拆箱" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/03/09/自动装箱、拆箱/" class="archive-article-date">
-  	<time datetime="2018-03-09T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-09</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/03/09/自动装箱、拆箱/">自动装箱、拆箱</a>
+    <h1 class="article-title" itemprop="name">
+      自动装箱、拆箱
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/03/09/自动装箱、拆箱/" class="archive-article-date">
+  	<time datetime="2018-03-09T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-03-09</time>
+</a>
+        
+        
+        <span class="archive-article-date">
+          阅读量 <span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>自动装箱、拆箱是java中最常用的语法糖之一，虚拟机运行时并不支持自动装箱、拆箱，装箱和拆箱的操作是在编译期间进行的。</p>
+<hr>
+<p>《深入理解java虚拟机》中的例子：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">public <span class="class"><span class="keyword">class</span> <span class="title">AutoBoxingTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    public <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="built_in">String</span>[] args) &#123;</span><br><span class="line">        Integer a = <span class="number">1</span>;</span><br><span class="line">        Integer b = <span class="number">2</span>;</span><br><span class="line">        Integer c = <span class="number">3</span>;</span><br><span class="line">        Integer d = <span class="number">3</span>;</span><br><span class="line">        Integer e = <span class="number">321</span>;</span><br><span class="line">        Integer f = <span class="number">321</span>;</span><br><span class="line">        Long g = <span class="number">3</span>L;</span><br><span class="line"></span><br><span class="line">        System.out.println(c == d);            <span class="comment">//(1）true</span></span><br><span class="line">        System.out.println(e == f);            <span class="comment">//(2) false</span></span><br><span class="line">        System.out.println(c == (a + b));      <span class="comment">//(3) true</span></span><br><span class="line">        System.out.println(c.equals(a + b));   <span class="comment">//(4) true</span></span><br><span class="line">        System.out.println(g == (a + b));      <span class="comment">//(5) true</span></span><br><span class="line">        System.out.println(g.equals(a + b));   <span class="comment">//(6) false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>根据生成的字节码来分析例子中运行结果：</p>
+<p>1. c == d， 结果为true，这是因为Integer.valueOf方法根据参数值的大小缓存了-128～127的数，所以在这个区间的数字装箱时返回的是缓存的同一个对象。Integer.valueOf(int i)方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Integer <span class="title">valueOf</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i &gt;= IntegerCache.low &amp;&amp; i &lt;= IntegerCache.high)</span><br><span class="line">        <span class="keyword">return</span> IntegerCache.cache[i + (-IntegerCache.low)];</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> Integer(i);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2. e == f， 结果为false，Integer.valueOf方法没有命中缓存所以e和f是两个不同的对象</p>
+<p>3. c == (a + b)，结果为true，对应的字节码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">83</span>: aload_3</span><br><span class="line">84: invokevirtual #8            // Method java/lang/Integer.intValue:()I</span><br><span class="line"><span class="number">87</span>: aload_1</span><br><span class="line">88: invokevirtual #8            // Method java/lang/Integer.intValue:()I</span><br><span class="line"><span class="number">91</span>: aload_2</span><br><span class="line">92: invokevirtual #8            // Method java/lang/Integer.intValue:()I</span><br><span class="line"><span class="number">95</span>: iadd</span><br><span class="line"><span class="number">96</span>: if_icmpne     <span class="number">103</span></span><br></pre></td></tr></table></figure>
+<p>先后分别对c、a、b调用intValue方法转为int类型再计算相加和判断是否相等</p>
+<p>4. c.equals(a + b)， 结果为true，对应的字节码：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">110</span>: aload_3</span><br><span class="line"><span class="number">111</span>: aload_1</span><br><span class="line">112: invokevirtual #8         // Method java/lang/Integer.intValue:()I</span><br><span class="line"><span class="number">115</span>: aload_2</span><br><span class="line">116: invokevirtual #8         // Method java/lang/Integer.intValue:()I</span><br><span class="line"><span class="number">119</span>: iadd</span><br><span class="line">120: invokestatic  #2         // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;</span><br><span class="line">123: invokevirtual #9         // Method java/lang/Integer.equals:(Ljava/lang/Object;)Z</span><br></pre></td></tr></table></figure>
+<p>aload_3把c加载到栈顶，aload_1加载a到栈顶，调用Integer.intValue把a转换为基本类型，aload_2加载b到栈顶，并转换为基本类型后与a相加的结果放到栈顶，调用Integer.valueOf把栈顶的相加结果转换为包装类，最后通过Integer.equals与c进行比较。</p>
+<p>5. g == (a + b)，结果为true， 对应的字节码为：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">137</span>: aload_1</span><br><span class="line">138: invokevirtual #8           // Method java/lang/Integer.intValue:()I</span><br><span class="line"><span class="number">141</span>: aload_2</span><br><span class="line">142: invokevirtual #8           // Method java/lang/Integer.intValue:()I</span><br><span class="line"><span class="number">145</span>: iadd</span><br><span class="line"><span class="number">146</span>: i2l</span><br><span class="line"><span class="number">147</span>: lcmp</span><br></pre></td></tr></table></figure>
+<p>a与b相加的结果通过i2l指令进行了一次类型转换，所以与g比较的结果为true</p>
+<p>6. g.equals(a + b)，结果为false，对应的字节码为：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">162</span>: aload         <span class="number">7</span></span><br><span class="line"><span class="number">164</span>: aload_1</span><br><span class="line">165: invokevirtual #8           // Method java/lang/Integer.intValue:()I</span><br><span class="line"><span class="number">168</span>: aload_2</span><br><span class="line">169: invokevirtual #8           // Method java/lang/Integer.intValue:()I</span><br><span class="line"><span class="number">172</span>: iadd</span><br><span class="line">173: invokestatic  #2           // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;</span><br><span class="line">176: invokevirtual #11          // Method java/lang/Long.equals:(Ljava/lang/Object;)Z</span><br></pre></td></tr></table></figure>
+<p>a与b相加的结果被Integer.valueOf方法转换为Integer类型，在Long.equals中存在类型判断，两者类型不同所以返回false。Long.equals()方法：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public boolean equals(<span class="built_in">Object</span> obj) &#123;</span><br><span class="line">    <span class="keyword">if</span> (obj <span class="keyword">instanceof</span> Long) &#123;</span><br><span class="line">        <span class="keyword">return</span> value == ((Long)obj).longValue();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从生成的字节码来看：</p>
+<ol>
+<li>包装类在使用常量进行赋值时，会调用对应的valueOf()方法创建对象；</li>
+<li>包装类在遇到算术运算符时会先进行拆箱再进行运算。</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -196,67 +231,120 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/03/09/自动装箱、拆箱/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2017/12/02/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/12/02/hello-world/" class="archive-article-date">
-  	<time datetime="2017-12-02T13:01:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-12-02</time>
-</a>
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    目录，不存在的…
+                    </div>
+                </span>
+            </div>
         </div>
-    	 
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/12/02/hello-world/">Hello World</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">test</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
+
 
 
           </div>
@@ -283,8 +371,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
